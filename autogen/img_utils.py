@@ -23,6 +23,22 @@ from PIL import Image
 from autogen.multimodal_utils import parse_tags_from_content
 
 
+class AGImage:
+    def __init__(self, image_file: Union[str, Image.Image]):
+        self.pil = get_pil_image(image_file)
+
+        self.message_part = {"type": "image_url",
+                             "image_url": {"url": pil_to_data_uri(self.pil)}}
+
+    def __add__(self, other) -> List:
+        pass
+
+    def __str__(self) -> str:
+        pass
+
+    def __repr__(self) -> str:
+        pass
+    
 def get_pil_image(image_file: Union[str, Image.Image]) -> Image.Image:
     """
     Loads an image from a file and returns a PIL Image object.
